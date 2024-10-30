@@ -6,13 +6,20 @@
 <body>
     <p>Switch tabs or minimize browser to see visibility change log in console.</p>
 
+    <div id="statusMessage">Current status: visible</div>
+
     <script>
+        const statusMessage = document.getElementById("statusMessage");
+
         document.addEventListener("visibilitychange", function() {
+            let message;
             if (document.visibilityState === "hidden") {
-                console.log("The tab is now hidden.");
+                message = "The tab is now hidden.";
             } else if (document.visibilityState === "visible") {
-                console.log("The tab is now visible.");
+                message = "The tab is now visible.";
             }
+            console.log(message);
+            statusMessage.innerHTML += `<br>${message}`;
         });
     </script>
 </body>
