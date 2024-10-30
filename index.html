@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Visibility Change Test</title>
+</head>
+<body>
+    <p>Switch tabs or minimize browser to see visibility change log in console.</p>
+
+    <script>
+        document.addEventListener("visibilitychange", function() {
+            if (document.visibilityState === "hidden") {
+                console.log("The tab is now hidden.");
+            } else if (document.visibilityState === "visible") {
+                console.log("The tab is now visible.");
+            }
+        });
+    </script>
+</body>
+</html>
