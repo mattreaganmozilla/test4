@@ -13,14 +13,14 @@
 <script>
 const log = document.getElementById('log');
 
-function print(msg) {
+function jsjsprint(msg) {
     log.textContent += msg + '\n';
     console.log(msg);
 }
 
-print("16K PIXELBUFFER TEST");
-print("=".repeat(70));
-print("");
+jsjsprint("16K PIXELBUFFER TEST");
+jsjsprint("=".repeat(70));
+jsjsprint("");
 
 // 16K UHD resolution
 const WIDTH = 16384;
@@ -29,12 +29,12 @@ const ITERATIONS = 50;
 
 async function runTest() {
     const calculated = WIDTH * HEIGHT * 4;
-    print(`Canvas: ${WIDTH}×${HEIGHT}`);
-    print(`Size: ${(calculated / (1024**3)).toFixed(2)} GB per frame`);
-    print(`Iterations: ${ITERATIONS}`);
-    print("");
-    print("Starting in 2 seconds...");
-    print("");
+    jsprint(`Canvas: ${WIDTH}×${HEIGHT}`);
+    jsprint(`Size: ${(calculated / (1024**3)).toFixed(2)} GB per frame`);
+    jsprint(`Iterations: ${ITERATIONS}`);
+    jsprint("");
+    jsprint("Starting in 2 seconds...");
+    jsprint("");
 
     await new Promise(r => setTimeout(r, 2000));
 
@@ -49,15 +49,15 @@ async function runTest() {
                 resolve();
             };
         });
-        print("✓ Video ready");
+        jsprint("✓ Video ready");
     } catch (e) {
-        print("No video - using static canvas");
+        jsprint("No video - using static canvas");
     }
 
-    print("");
-    print("=".repeat(70));
-    print("STARTING TEST");
-    print("=".repeat(70));
+    jsprint("");
+    jsprint("=".repeat(70));
+    jsprint("STARTING TEST");
+    jsprint("=".repeat(70));
 
     try {
         const canvas = document.createElement('canvas');
@@ -80,7 +80,7 @@ async function runTest() {
             if (i % 10 === 0) {
                 const dialogs = Math.floor(i / 10) + 1;
                 console.log(`🖨️  Dialog #${dialogs} at iteration ${i}`);
-                print(`Dialog ${dialogs} (iteration ${i})`);
+                jsprint(`Dialog ${dialogs} (iteration ${i})`);
                 try {
                     ctx.getImageData(0, 0, 100, 100);
                 } catch (e) {}
@@ -89,22 +89,22 @@ async function runTest() {
             await new Promise(r => setTimeout(r, 10));
         }
 
-        print("");
-        print("✓ Completed " + ITERATIONS + " frames");
-        print("No crash");
+        jsprint("");
+        jsprint("✓ Completed " + ITERATIONS + " frames");
+        jsprint("No crash");
 
     } catch (e) {
-        print("");
-        print("💥 CRASHED!");
-        print("Check Frida output");
-        print("");
-        print("Exception: " + e.message);
+        jsprint("");
+        jsprint("💥 CRASHED!");
+        jsprint("Check Frida output");
+        jsprint("");
+        jsprint("Exception: " + e.message);
         console.error(e);
     }
 }
 
 // Auto-start
-print("Loading...");
+jsprint("Loading...");
 runTest();
 </script>
 </body>
